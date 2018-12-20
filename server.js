@@ -1,8 +1,8 @@
 const express = require("express");
 var paths = require("path");
 
-// Sets up the Express App
-// =============================================================
+//  Express App
+
 var app = express();
 
 // Set the port of our application

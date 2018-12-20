@@ -37,35 +37,5 @@ var friends = [
         },
 
     ]
-    // let name = $('#name').val().trim();
-    // let photo = $('#photo').val().trim();
-    // let qOne = $('#one').val().trim();
-    // let qTwo = $('#two').val().trim();
-    // let qThree = $('#three').val().trim();
-    // let qFour = $('#four').val().trim();
-    // let qFive = $('#five').val().trim();
-    // let qSix = $('#six').val().trim();
-    // let qSeven = $('#seven').val().trim();
-    // let qEight = $('#eight').val().trim();
-    // let qNine = $('#nine').val().trim();
-    // let qTen = $('#ten').val().trim();
-    // $.post("/api/friends",
-//     {
-//         name :name,
-//         photo:photo,
-//         qOne:qOne,
-//         qTwo:qTwo,
-//         qThree:qThree,
-//         qFour:qFour,
-//         qFive:qFive,
-//         qSix:qSix,
-//         qSeven:qSeven,
-//         qEight:qEight,
-//         qNine:qNine,
-//         qTen:qTen
-//     },
-//     function(data, status){
-//         alert('Post request made.');
-//     });
-// })
+   
 module.exports= friends;
