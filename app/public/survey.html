@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Survey</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+   
+    <script src="../data/friends.js"></script>
+    <script type="text/javascript" src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <!-- Compiled and minified Materialize CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+
+	<!-- Compiled and minified Materialize JavaScript -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+<body>
+    <a href="home">Home</a>
+<h1>Friend Finder survey</h1>
+<h4 id="namequestion">What is your name?</h4>
+<input id = "name" name="firstname" type="text">
+<h4 >Please enter a photo link.</h4>
+<input id = "photo" name="photo" type="text">
+<h4>On a scale of 1-5, how much do you like animals?</h4>
+<select id = "one" name="questionOne">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+   </select>
+  <h4>On a scale of 1-5 how important are looks?</h4>
+<select id = "two" name="questionTwo">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+   </select>
+  <h4>On a scale of 1-5 how important is personality?</h4>
+<select id = "three" name="questionThree">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+  </select>
+  <h4>On a scale of 1-5 how important is honesty?</h4>
+<select id="four" name="questionFour">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    </select>
+  <h4>On a scale of 1-5 how important is loyalty?</h4>
+<select id="five" name="questionFive">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+  </select>
+  <h4>On a scale of 1-5 how important is humor?</h4>
+<select id="six" name="questionSix">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+     </select>
+  <h4> On a scale of 1-5 how likely are you to have children?</h4>
+<select id="seven" name="questionSeven">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+   </select>
+  <h4>On a scale of 1-5 how seriously do you take relationships?</h4>
+<select id="eight" name="questionEight">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+     </select>
+  <h4>On a scale of 1-5 how important is friendship with someone you are dating?</h4>
+<select id="nine" name="questionNine">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+   </select>
+  <h4>On a scale of 1-5 how important personal space?</h4>
+<select id = "ten" name="questionTen">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+     </select>
+     <br>
+     <br>
+     <button id="submit">Submit</button> 
+
+     <div id="modal1" class="modal">
+            <div class="modal-content">
+                <h4>Closest Friend Match</h4>
+                <div class="divider"></div>
+                <h5 id="userMatch"></h5>
+                <img id="userMatchImage" class="materialboxed" width="650" src="">
+            </div>
+            <div class="modal-footer">
+                <a href="/survey" class="modal-action modal-close waves-effect waves-green btn-flat">Fill Again!</a>
+            </div>
+        </div>
+    
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('select').material_select();
+                $('.modal').modal({
+                    dismissible: false, // Modal can be dismissed by clicking outside of the modal
+                    opacity: .5, // Opacity of modal background
+                    inDuration: 300, // Transition in duration
+                    outDuration: 200, // Transition out duration
+                    startingTop: '4%', // Starting top style attribute
+                    endingTop: '10%' // Ending top style attribute
+                });
+            });
+            // Activate submit button
+            $('#submit').on('click', function(event) {
+                event.preventDefault();
+                // Gather user inputs
+                var userInput = {
+                     name : $('#name').val().trim(),
+     photo : $('#photo').val().trim(),
+     scores : [
+      $('#one').val().trim(),
+      $('#two').val().trim(),
+      $('#three').val().trim(),
+      $('#four').val().trim(),
+      $('#five').val().trim(),
+      $('#six').val().trim(),
+      $('#seven').val().trim(),
+      $('#eight').val().trim(),
+      $('#nine').val().trim(),
+      $('#ten').val().trim()
+                ]
+                };
+                // console.log('userInput = ' + JSON.stringify(userInput));
+                // Add user inputs to friends list
+                $.post('/api/friends', userInput)
+                  .done(function(data) {
+                      // console.log('response = ' + JSON.stringify(data));
+                      // Set the name and image values of friend match
+                      $('#userMatch').html(data.matchName);
+                    $("#userMatchImage").attr("src", data.matchImage);
+                    // Pop open the modal dialog
+                      $('#modal1').modal('open');
+                  });
+            });
+        </script>
+    </body>
+    </html>
+    
+    
+
+
+</body>
+</html>
