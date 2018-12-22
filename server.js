@@ -1,7 +1,7 @@
 const express = require("express");
 var paths = require("path");
 
-//  Express App
+// Make the Express App
 
 var app = express();
 
@@ -11,7 +11,7 @@ var PORT = process.env.PORT || 8080;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
+//pull the paths from the routes files
 require(paths.join(__dirname, './app/routing/apiRoutes'))(app);
 require(paths.join(__dirname, './app/routing/htmlRoutes'))(app);
 app.listen(PORT, function() {

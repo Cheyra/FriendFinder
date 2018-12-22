@@ -1,5 +1,5 @@
 
-
+//Set an array to store profiles
 var friends = [
         { 
             name : "Fernando",
@@ -37,5 +37,5 @@ var friends = [
         },
 
     ]
-   
+   //make this available to other files
 module.exports= friends;
