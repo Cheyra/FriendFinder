@@ -1,7 +1,7 @@
 
 var paths = require("path");
 
-
+//establish and export paths
 module.exports = function(app){
 
 app.get("/home", function(req, res) {
